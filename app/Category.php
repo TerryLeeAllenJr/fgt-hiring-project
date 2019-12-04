@@ -12,6 +12,9 @@ use Kalnoy\Nestedset\NodeTrait;
 class Category extends Model
 {
 
+    // Using the NodeTrait from Kalnoy\NestedSet to provide out of the box Nested Set functionality within Eloquent.
+    use NodeTrait;
+
     protected $fillable = ['name','slug','user_id'];
 
     /**
@@ -32,6 +35,13 @@ class Category extends Model
         'slug' => 'required|alpha_dash|unique:categories|max:64',
     ];
 
-    // Using the NodeTrait from Kalnoy\NestedSet to provide out of the box Nested Set functionality within Eloquent.
-    use NodeTrait;
+    /**
+     * Defines the relationship with Entries.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
 }

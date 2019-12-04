@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CategoryContract;
 use App\Exceptions\BlogException;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,6 +13,11 @@ use Illuminate\Http\Request;
  */
 class ApiController extends Controller {
 
+
+    /**
+     * @var
+     */
+    protected $service;
 
     protected $status;
 

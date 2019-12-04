@@ -93,7 +93,7 @@ class CategoryService implements CategoryContract
         // Find the category in the database or die trying.
         $category = Category::findOrFail($id);
 
-        // Update the data. In a production environment, I would handle parent changes using transactions. 
+        // Update the data. In a production environment, I would handle parent changes using transactions.
         $category->name = $data['name'];
         $category->slug = $data['slug'];
 

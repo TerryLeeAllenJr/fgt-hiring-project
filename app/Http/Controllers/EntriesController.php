@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Entry;
+use App\Contracts\EntryContract;
 use Exception;
 use Illuminate\Http\Request;
-use App\Contracts\CategoryContract;
 
-/**
- * Class CategoryController
- * @package App\Http\Controllers
- */
-class CategoryController extends ApiController
+class EntriesController extends ApiController
 {
 
-
-
-    /**
-     * CategoryController constructor.
-     * @param CategoryContract $service
-     */
-    public function __construct(CategoryContract $service)
+    public function __construct(EntryContract $service)
     {
         // Inject the service.
         $this->service = $service;
@@ -37,8 +27,8 @@ class CategoryController extends ApiController
     {
         try {
 
-            // Using the injected service to get a list of categories.
-            $this->response['data'] = $this->service->getCategories($request->all());
+            // Using the injected service to create the category.
+            $this->response['data'] = $this->service->getEntries($request->all());
 
             // Sweet! It worked... now let's send the response back and get on with it.
             return response($this->response);
@@ -59,10 +49,10 @@ class CategoryController extends ApiController
         try {
 
             // Let's check to be sure that the actual data being written to the database is sanitary.
-            $this->validate($request->all(),Category::$postValidationParameters);
+            $this->validate($request->all(),Entry::$postValidationParameters);
 
-            // Using the injected service to create the category.
-            $this->response['data'] = $this->service->createCategory($request->all());
+            // Using the injected service to create the entry.
+            $this->response['data'] = $this->service->createEntry($request->all());
 
             // Sweet! It worked... now let's send the response back and get on with it.
             return response($this->response);
@@ -80,10 +70,11 @@ class CategoryController extends ApiController
      */
     public function show(Request $request, int $id)
     {
+
         try {
 
-            // Using the injected service to get the category.
-            $this->response['data'] = $this->service->getCategory($id,$request->all());
+            // Using the injected service to return the entry data.
+            $this->response['data'] = $this->service->getEntry($id,$request->all());
 
             // Sweet! It worked... now let's send the response back and get on with it.
             return response($this->response);
@@ -100,15 +91,16 @@ class CategoryController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
+
         try {
 
             // Let's check to be sure that the actual data being written to the database is sanitary.
-            $this->validate($request->all(),Category::$putValidationParameters);
+            $this->validate($request->all(),Entry::$putValidationParameters);
 
-            // Using the injected service to create the category.
-            $this->response['data'] = $this->service->updateCategory($id,$request->all());
+            // Using the injected service to update the entry.
+            $this->response['data'] = $this->service->updateEntry($id,$request->all());
 
             // Sweet! It worked... now let's send the response back and get on with it.
             return response($this->response);
@@ -126,10 +118,11 @@ class CategoryController extends ApiController
      */
     public function destroy($id)
     {
+
         try {
 
-            // Using the injected service to delete the category.
-            $this->response['data'] = $this->service->deleteCategory($id);
+            // Using the injected service to update the entry.
+            $this->response['data'] = $this->service->deleteEntry($id);
 
             // Sweet! It worked... now let's send the response back and get on with it.
             return response($this->response);
