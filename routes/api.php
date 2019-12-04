@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+
+Route::middleware('auth:api')->group(function(){
+
+    // Laravel default route for showing the user data.
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // Explicit resource route for categories.
+    Route::resource('categories','CategoryController')->except(['edit','create']);
+
 });
+
+
+
+
