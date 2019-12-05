@@ -51,10 +51,8 @@
 
       axios.get('api/entries/'+this.id).then((res) =>{
         this.post = res.data.data;
-        console.info(this.post);
       });
 
-      console.info(this.$route);
     }
 
   }

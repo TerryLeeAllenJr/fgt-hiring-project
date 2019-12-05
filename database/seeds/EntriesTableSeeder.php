@@ -22,7 +22,7 @@ class EntriesTableSeeder extends Seeder
 
         for ($x = 0; $x <= 400; $x++) {
             $entryService->createEntry([
-                'title' => $faker->text(128),
+                'title' => $faker->text(48),
                 'slug'  => $faker->slug(),
                 'category_id' => $categories[rand(0,count($categories) -1)]['id'],
                 'short_desc' => $faker->text(200),

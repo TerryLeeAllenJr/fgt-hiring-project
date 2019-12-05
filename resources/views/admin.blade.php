@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            
-        </div>
-    </div>
+    <router-view></router-view>
 @endsection

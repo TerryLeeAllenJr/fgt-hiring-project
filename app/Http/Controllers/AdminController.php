@@ -22,6 +22,6 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin',['scripts' => ['js/blog.js']]);
+        return view('admin',['scripts' => ['js/admin.js']]);
     }
 }

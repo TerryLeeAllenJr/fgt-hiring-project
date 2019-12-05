@@ -31,8 +31,8 @@ class Category extends Model
      * @var array
      */
     public static $putValidationParameters = [
-        'name' => 'required|string|unique:categories|max:64',
-        'slug' => 'required|alpha_dash|unique:categories|max:64',
+        'name' => 'required|string|max:64',
+        'slug' => 'required|alpha_dash|max:64',
     ];
 
     /**

@@ -31,7 +31,7 @@ class Entry extends Model
     public static $putValidationParameters = [
         'category_id' => 'required|integer|exists:categories,id',
         'title' => 'required|string|max:128',
-        'slug' => 'required|string|unique:entries|max:64',
+        'slug' => 'required|string|max:64',
         'short_desc' => 'required|string',
         'desc' => 'required|string',
     ];
