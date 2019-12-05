@@ -20,7 +20,7 @@ class EntriesTableSeeder extends Seeder
 
         $entryService = new EntryService();
 
-        for ($x = 0; $x <= 400; $x++) {
+        for ($x = 0; $x <= 200; $x++) {
             $entryService->createEntry([
                 'title' => $faker->text(48),
                 'slug'  => $faker->slug(),

@@ -72,8 +72,17 @@ class Entry extends Model
     public function scopeGetEntriesByCategory($query, $options)
     {
 
-        return (isset($options['category_id'])) ?
-            $query->where('category_id','=', $options['category_id']) :
-            $query;
+        // No sense in continuing if the category id is not set.
+        if (!isset($options['category_id'])) {
+            return $query;
+        }
+
+        // Find the category to get the left and right bounds.
+        $categoryBounds = Category::select(['_lft','_rgt'])->where('id','=',$options['category_id'])->firstOrFail()->toArray();
+
+        return $query->where('category_id','=', $options['category_id'])
+            ->orWhereHas('category',function($q) use ($options,$categoryBounds) {
+                return $q->where('_lft','>',$categoryBounds['_lft'])->where('_rgt','<',$categoryBounds['_rgt']);
+            });
     }
 }

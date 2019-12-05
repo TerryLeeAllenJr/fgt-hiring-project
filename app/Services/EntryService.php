@@ -70,6 +70,7 @@ class EntryService implements EntryContract {
 
         return Entry::with(['category','image','thumbnail'])
             ->getEntriesByCategory($options)
+            ->orderBy('created_at', 'DESC')
             ->paginate($limit);
     }
 
