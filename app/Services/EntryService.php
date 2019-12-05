@@ -24,7 +24,8 @@ class EntryService implements EntryContract {
 
         // Eloquent does a good job leveraging the $fillable parameter to gate data written to the database.
         $entry = new Entry($data);
-        $entry->user_id = auth()->user()->id;
+        //$entry->user_id = auth()->user()->id;
+        $entry->user_id = 3;
 
         // Stubbing the image data here instead of coding the upload.
         $files = $this->stubImageData($entry);
@@ -65,7 +66,8 @@ class EntryService implements EntryContract {
     public function getEntries(array $options = []) : LengthAwarePaginator
     {
         // Return a paginated response for use with the front end.
-        $limit = isset($options['limit']) ?? 30;
+        $limit = isset($options['limit']) ? $options['limit'] : 30;
+
         return Entry::with(['category','image','thumbnail'])
             ->getEntriesByCategory($options)
             ->paginate($limit);
@@ -104,7 +106,8 @@ class EntryService implements EntryContract {
         $image->width = 400;
         $image->focus_x = 0;
         $image->focus_y = 0;
-        $image->user_id = auth()->user()->id;
+        //$image->user_id = auth()->user()->id;
+        $image->user_id = 3;
         $image->save();
 
         // Create the thumb.
@@ -119,7 +122,8 @@ class EntryService implements EntryContract {
         $thumb->width = 100;
         $thumb->focus_x = 0;
         $thumb->focus_y = 0;
-        $thumb->user_id = auth()->user()->id;
+        //$thumb->user_id = auth()->user()->id;
+        $thumb->user_id = 3;
         $thumb->save();
 
         return [

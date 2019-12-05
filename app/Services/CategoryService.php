@@ -76,7 +76,7 @@ class CategoryService implements CategoryContract
     public function getCategories(array $options = []) : LengthAwarePaginator
     {
         // Let the front end set the limit. Why not?
-        $limit = isset($options['limit']) ?? 30;
+        $limit = isset($options['limit']) ? $options['limit'] : 30;
 
         return Category::with(['children'])->paginate($limit);
     }

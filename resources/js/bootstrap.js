@@ -1,10 +1,17 @@
-window._ = require('lodash');
+window.Vue = require('vue');
+import VueRouter from 'vue-router';
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+Vue.use(VueRouter);
+
+// Autoload all components from the ./components directory.
+const files = require.context('./', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+
+// Setup a new Vue instance to serve as a generic event handler and attach it to the window.
+window.Event = new Vue();
+
+window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
@@ -13,15 +20,10 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
+// Load the axios library and setup some defaults.
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = "Bearer BZir3cK7BwaWcwaKGtoMUySZh5kQdrHBoBInZkIu7gGIIkoh3lBAGvxW4h7Z";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

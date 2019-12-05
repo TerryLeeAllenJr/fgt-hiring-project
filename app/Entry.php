@@ -71,6 +71,7 @@ class Entry extends Model
      */
     public function scopeGetEntriesByCategory($query, $options)
     {
+
         return (isset($options['category_id'])) ?
             $query->where('category_id','=', $options['category_id']) :
             $query;
