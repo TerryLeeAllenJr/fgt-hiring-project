@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'BlogController@index')->name('home');
+Route::get('/styleguide',function(){ return view('styleguide');});
 
 Auth::routes();
 

@@ -22,7 +22,7 @@ I will be updating this throughout the day today, and plan to continue working o
 
 * Uses Vue.js and VueRouter to handle all front end functionality. 
 * The admin page and blog page are separate Laravel routes to leverage the Laravel authentication package.
-* Each section of the front end are stand-alone SPAs leveraging the Larvel API to hydrate data. 
+* Each section of the front end are stand-alone SPAs leveraging the Laravel API to hydrate data. 
 * All front-end files reside in the `/resources` directory, with all javascript and Vue code living in `resources/js` and it's sub-folders.
 * I opted to use the `@ckeditor/ckeditor5-build-classic` and `@ckeditor/ckeditor5-vue` packages for the rich text editor. This was chosed for it's seamless integration into Vue, but has *not* been vetted for security issues and should not be considered production ready. 
 
