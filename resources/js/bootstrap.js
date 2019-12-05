@@ -1,7 +1,9 @@
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 Vue.use(VueRouter);
+Vue.use(CKEditor);
 
 // Autoload all components from the ./components directory.
 const files = require.context('./', true, /\.vue$/i);

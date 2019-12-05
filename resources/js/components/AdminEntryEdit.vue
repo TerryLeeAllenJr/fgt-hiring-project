@@ -19,13 +19,14 @@
                             <option v-for="category in categories" :value="category.id">{{category.name}}</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="short_desc">Short Description</label>
-                        <textarea class="form-control" id="short_desc" rows="3" v-model="post.short_desc"></textarea>
+                        <ckeditor id="short_desc" :editor="editor" v-model="post.short_desc" :config="editorConfig"></ckeditor>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" rows="6" v-model="post.desc"></textarea>
+                        <ckeditor id="description" :editor="editor" v-model="post.desc" :config="editorConfig"></ckeditor>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -35,6 +36,8 @@
 </template>
 
 <script>
+
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
   // The default values to use on the Create Post page.
   const defaultPost = {
@@ -48,6 +51,11 @@
   export default {
     data: () => {
       return  {
+        editor: ClassicEditor,
+        editorConfig: {
+          // The configuration of the editor.
+        },
+        editorData: '<p>Content of the editor.</p>',
         categories: {},
         post:defaultPost,
       }
@@ -92,6 +100,8 @@
       }
     },
     mounted() {
+
+      // Get the categories to use in the dropdown.
       axios.get('api/categories').then((res)=>{
         // Set the categories value, then set the default selected category to the first one returned.
         this.categories = res.data.data.data;
@@ -105,10 +115,6 @@
       }else {
         this.post = defaultPost;
       }
-    },
-    created() {
-
-
     },
     watch: {
       '$route' (to, from) {
