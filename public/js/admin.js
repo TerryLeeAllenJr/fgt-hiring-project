@@ -1982,14 +1982,14 @@ var defaultCategory = {
         _this2.category = res.data.data;
       });
     } else {
-      this.category = defaultPost;
+      this.category = defaultCategory;
     }
   },
   created: function created() {},
   watch: {
     '$route': function $route(to, from) {
       if (to.params.id == null) {
-        this.category = defaultStatus;
+        this.category = defaultCategory;
       }
     }
   }

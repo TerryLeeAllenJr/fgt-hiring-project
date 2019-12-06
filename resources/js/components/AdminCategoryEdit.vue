@@ -87,7 +87,7 @@
           this.category = res.data.data;
         });
       }else {
-        this.category = defaultPost;
+        this.category = defaultCategory;
       }
     },
     created() {
@@ -97,7 +97,7 @@
     watch: {
       '$route' (to, from) {
         if(to.params.id == null) {
-          this.category = defaultStatus;
+          this.category = defaultCategory;
         }
       }
     }
