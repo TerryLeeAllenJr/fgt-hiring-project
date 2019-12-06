@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'BlogController@index')->name('home');
+Route::middleware(['auth'])->get('/', 'BlogController@index')->name('home');
 Route::get('/styleguide', function(){ return view('styleguide');})->name('styleguide');
 
 Auth::routes();

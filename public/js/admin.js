@@ -1958,7 +1958,7 @@ var defaultCategory = {
           method: 'post',
           url: 'api/categories',
           data: {
-            name: this.category.title,
+            name: this.category.name,
             slug: this.category.slug,
             parent_id: this.category.parent_id
           }
@@ -54464,9 +54464,10 @@ try {
 } catch (e) {} // Load the axios library and setup some defaults.
 
 
+var api_token = window.user.api_token || null;
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common['Authorization'] = "Bearer BZir3cK7BwaWcwaKGtoMUySZh5kQdrHBoBInZkIu7gGIIkoh3lBAGvxW4h7Z";
+window.axios.defaults.headers.common['Authorization'] = "Bearer " + api_token;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
