@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <router-view></router-view>
+    <div class="row" id="body-row">
+        <router-view></router-view>
+    </div>
 @endsection

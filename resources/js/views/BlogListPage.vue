@@ -1,9 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <category-sidebar></category-sidebar>
-            <blog-list-by-category></blog-list-by-category>
-        </div>
+    <div class="row justify-content-center">
+        <sidebar-nav></sidebar-nav>
+        <blog-list></blog-list>
     </div>
 </template>
 
