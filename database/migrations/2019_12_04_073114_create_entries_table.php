@@ -19,7 +19,7 @@ class CreateEntriesTable extends Migration
             $table->integer('image_id')->nullable(false);
             $table->integer('thumbnail_id')->nullable(false);
             $table->string('title',128)->nullable(false);
-            $table->string('slug',64)->unique()->nullable(false);
+            $table->string('slug',256)->unique()->nullable(false);
             $table->text('short_desc')->nullable(false);
             $table->longText('desc')->nullable(false);
             $table->integer('user_id')->nullable(false);
