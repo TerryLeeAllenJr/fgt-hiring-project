@@ -63,7 +63,7 @@
             method: 'post',
             url: 'api/categories',
             data: {
-              name: this.category.title,
+              name: this.category.name,
               slug: this.category.slug,
               parent_id: this.category.parent_id,
             }
