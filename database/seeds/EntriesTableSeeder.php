@@ -2,8 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use Faker\Factory;
 use App\Services\EntryService;
 use App\Category;
+use App\Entry;
 
 
 class EntriesTableSeeder extends Seeder
@@ -16,9 +18,15 @@ class EntriesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $categories = Category::select('id')->get()->toArray();
-
         $entryService = new EntryService();
+
+        Entry::query()->truncate();
+
+        // Make the categories.
+
+
+
+        $categories = Category::select('id')->get()->toArray();
 
         for ($x = 0; $x <= 200; $x++) {
             $entryService->createEntry([
