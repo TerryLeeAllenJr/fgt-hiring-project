@@ -64,6 +64,15 @@ class Entry extends Model
     }
 
     /**
+     * Get's the author of the entry.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->select(['id','name','email']);
+    }
+
+    /**
      * Eloquent scope to only return blog posts from a specific category.
      * @param $query
      * @param $options

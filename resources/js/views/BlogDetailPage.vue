@@ -9,7 +9,7 @@
                                 <a class="detail-header-icon" href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                             </div>
                             <div class="col-md-11">
-                                <p class="detail-created-at text-right">Created on {{post.created_at}} by {{post.user_id}}</p>
+                                <p class="detail-created-at text-right">Created on {{ postedDate }} by {{post.user.name}}</p>
                             </div>
                         </div>
                     </div>
@@ -38,11 +38,18 @@
 </template>
 
 <script>
+
+  import moment from 'moment';
+
   export default {
     data: () => {
       return {
         id: 0,
-        post: {}
+        post: {
+          user:{
+            name:''
+          }
+        }
       }
     },
     created() {
@@ -53,6 +60,11 @@
         this.post = res.data.data;
       });
 
+    },
+    computed: {
+      postedDate() {
+        return moment(this.post.created_at).format('MMMM Do, YYYY');
+      }
     }
 
   }

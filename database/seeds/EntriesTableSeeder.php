@@ -24,8 +24,6 @@ class EntriesTableSeeder extends Seeder
 
         // Make the categories.
 
-
-
         $categories = Category::select('id')->get()->toArray();
 
         for ($x = 0; $x <= 200; $x++) {

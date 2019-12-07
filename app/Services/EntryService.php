@@ -55,7 +55,7 @@ class EntryService implements EntryContract {
      */
     public function getEntry(int $id, array $options = []) : Model
     {
-        return Entry::with(['category','image','thumbnail'])->findOrFail($id)->getModel();
+        return Entry::with(['category','image','thumbnail','user'])->findOrFail($id)->getModel();
     }
 
     /**
